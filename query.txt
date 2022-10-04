@@ -8,19 +8,8 @@ FROM `students`
 WHERE YEAR(date_of_birth) = 1990;
 
 
-SELECT COUNT(*)
-FROM `students`
-WHERE YEAR(date_of_birth) = 1990;
-
-
-
 2°:
 SELECT *
-FROM `students`
-WHERE date_of_birth LIKE '1990%';
-
-
-SELECT COUNT(*)
 FROM `students`
 WHERE date_of_birth LIKE '1990%';
 
@@ -32,11 +21,6 @@ WHERE date_of_birth LIKE '1990%';
 {
 
 SELECT *
-FROM `courses`
-WHERE cfu > 10;
-
-
-SELECT COUNT(*)
 FROM `courses`
 WHERE cfu > 10;
 
@@ -52,9 +36,9 @@ FROM `students`
 WHERE 2022 - YEAR(date_of_birth) > 30;
 
 
-SELECT COUNT(*) 
+SELECT * 
 FROM `students`
-WHERE 2022 - YEAR(date_of_birth) > 30;
+WHERE TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) > 30;
 
 }
 
@@ -65,11 +49,6 @@ laurea (286)
 {
 
 SELECT * 
-FROM `courses`
-WHERE period = 'I semestre' and year = 1;
-
-
-SELECT COUNT(*) 
 FROM `courses`
 WHERE period = 'I semestre' and year = 1;
 
@@ -86,9 +65,9 @@ FROM `exams`
 WHERE date = '2020-06-20' and hour >= '14%';
 
 
-SELECT COUNT(*) 
+SELECT *
 FROM `exams`
-WHERE date = '2020-06-20' and hour >= '14%';
+WHERE date = '2020-06-20' and HOUR(hour) >= 14;
 
 }
 
@@ -101,11 +80,6 @@ SELECT *
 FROM `degrees`
 WHERE level = 'magistrale';
 
-
-SELECT COUNT(*) 
-FROM `degrees`
-WHERE level = 'magistrale';
-
 }
 
 
@@ -113,7 +87,7 @@ WHERE level = 'magistrale';
 7. Da quanti dipartimenti è composta l'università? (12) 
 {
 
-SELECT COUNT(*) 
+SELECT COUNT(*) as numero_dipartimenti 
 FROM `departments`;
 
 }
@@ -123,7 +97,7 @@ FROM `departments`;
 8. Quanti sono gli insegnanti che non hanno un numero di telefono? (50) 
 {
 
-SELECT COUNT(*)
+SELECT COUNT(*) as teachers_without_number_phone
 FROM `teachers`
 WHERE phone IS NULL;
 
